@@ -14,3 +14,9 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Nam
 
 # Excluding certain paths from Windows Defender scans
 Add-MpPreference -ExclusionPath "C:\Temp"
+
+# Obfuscated
+$a = "d2VsbCBkb25lIA=="
+$b = [System.Convert]::FromBase64String($a)
+$c = [System.Text.Encoding]::UTF8.GetString($b)
+Write-Output $b
